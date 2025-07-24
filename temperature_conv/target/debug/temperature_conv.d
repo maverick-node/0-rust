@@ -1,1 +1,0 @@
-/home/aelabsi/Desktop/piscine-rust/temperature_conv/target/debug/temperature_conv: /home/aelabsi/Desktop/piscine-rust/temperature_conv/src/lib.rs /home/aelabsi/Desktop/piscine-rust/temperature_conv/src/main.rs
