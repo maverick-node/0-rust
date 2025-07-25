@@ -1,20 +1,14 @@
 pub fn is_empty(v: &str) -> bool {
-    if v.len() == 0 {
-        return true;
-    }
-    false
+    v.is_empty()
 }
 
 pub fn is_ascii(v: &str) -> bool {
-    let mut re = String::from(v);
-    let mut count = 0;
-    for i in re.chars() {
-        count += 1;
+  for ch in v.chars(){
+    if !ch.is_ascii(){
+        return false
     }
-    if count == v.len() {
-        return true;
-    }
-    return false;
+  }
+  true
 }
 
 pub fn contains(v: &str, pat: &str) -> bool {
@@ -29,12 +23,10 @@ pub fn split_at(v: &str, index: usize) -> (&str, &str) {
 }
 
 pub fn find(v: &str, pat: char) -> usize {
-    let mut count = 0;
-    for i in v.chars() {
-        if i == pat {
-            return count;
+    for (i, ch) in v.chars().enumerate() {
+        if ch == pat {
+            return i;
         }
-        count += 1;
     }
     return 0;
 }
