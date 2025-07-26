@@ -16,10 +16,5 @@ fn main() {
         circle.intersect(circle1)
     );
 
-    println!(
-        "distance between {:?} and {:?} is {}",
-        point_a,
-        point_b,
-        point_a.distance(point_b)
-    );
+    println!("distance between {:?} and {:?} is {}", point_a, point_b, point_a.distance(point_b));
 }
