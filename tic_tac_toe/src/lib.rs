@@ -1,5 +1,4 @@
 pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
-    
     if vertical('O', table) || horizontal('O', table) || diagonals('O', table) {
         return "player O won".to_string();
     }
