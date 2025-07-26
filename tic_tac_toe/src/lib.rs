@@ -1,10 +1,10 @@
 pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
     
     if vertical('O', table) || horizontal('O', table) || diagonals('O', table) {
-        return "Player O won".to_string();
+        return "player O won".to_string();
     }
     if vertical('X', table) || horizontal('X', table) || diagonals('X', table) {
-        return "Player X won".to_string();
+        return "player X won".to_string();
     }
     "tie".to_string()
 }
