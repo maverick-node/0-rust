@@ -1,15 +1,15 @@
 pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
     
-    if vertical('O', table) || horizontal('O', table) || diagonal('O', table) {
+    if vertical('O', table) || horizontal('O', table) || diagonals('O', table) {
         return "Player O won".to_string();
     }
-    if vertical('X', table) || horizontal('X', table) || diagonal('X', table) {
+    if vertical('X', table) || horizontal('X', table) || diagonals('X', table) {
         return "Player X won".to_string();
     }
     "tie".to_string()
 }
 
-pub fn diagonal(player: char, table: [[char; 3]; 3]) -> bool {
+pub fn diagonals(player: char, table: [[char; 3]; 3]) -> bool {
     if table[0][0] == player && table[1][1] == player && table[2][2] == player {
         return true;
     }
