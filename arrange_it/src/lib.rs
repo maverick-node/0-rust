@@ -10,5 +10,6 @@ pub fn arrange_phrase(phrase: &str) -> String {
         }
         res.push(' ');
     }
-    res
+   res.trim().to_string()
+
 }
