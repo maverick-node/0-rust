@@ -30,17 +30,6 @@ let mut count=0;
         count=0
     }
 
-
-
-for (k,v) in &has{
-    for (j,y) in &has2{
-        if k == j && v==y {
-
-            return true
-        }
-    }
-}
-
-false
+has==has2
 
 }
