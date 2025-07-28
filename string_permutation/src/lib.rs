@@ -20,8 +20,8 @@ let mut count=0;
         has.insert(i,count);
         count=0
     }
-    for i in &first{
-        for k in &first{
+    for i in &second{
+        for k in &second{
             if i.to_lowercase() == k.to_lowercase(){
                 count+=1
             }
@@ -30,7 +30,17 @@ let mut count=0;
         count=0
     }
 
- has == has2
 
+
+for (k,v) in &has{
+    for (j,y) in &has2{
+        if k == j && v==y {
+
+            return true
+        }
+    }
+}
+
+false
 
 }

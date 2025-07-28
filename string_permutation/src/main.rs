@@ -1,8 +1,8 @@
 use string_permutation::*;
 
 fn main() {
-    let word = "thought";
-    let word1 = "thougth";
+    let word = "p";
+    let word1 = "a";
 
     println!(
         "Is {:?} a permutation of {:?}? = {}",
