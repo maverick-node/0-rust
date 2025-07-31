@@ -17,13 +17,16 @@ pub fn check_ms(message: &str) -> Result<&str, &str> {
 
 pub struct Message {
     msg: String,
+    msg2 :String
 }
 
 impl Message {
-    pub fn new(st: String, st2: String) -> String {
-        if st == "" || st2 == "" {
+    pub fn new(msg: String, msg2: String) -> String {
+        if msg == "" || msg2 == "" {
             return "".to_string();
         }
-        st + " " + &st2
+
+          msg + " " + &msg2
+          
     }
 }
