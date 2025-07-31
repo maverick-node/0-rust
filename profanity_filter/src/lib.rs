@@ -29,4 +29,7 @@ impl Message {
           msg + " " + &msg2
           
     }
+      pub fn combined(&self) -> String {
+        format!("{} {}", self.msg, self.msg2)
+    }
 }
