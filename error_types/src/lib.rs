@@ -3,18 +3,18 @@ use chrono::Utc;
 // this will be the structure that wil handle the errors
 #[derive(Debug, Eq, PartialEq)]
 pub struct FormError {
-    pub form_values: ((&str, String)),
+    pub form_values: (&'static str, String),
     pub date: String,
-    pub err: String,
+    pub err:  &'static str,
 }
 
 impl FormError {
     pub fn new(field_name: &'static str, field_value: String, err: &'static str) -> Self {
-        let now = Utc::now().to_rfc3339();
+        let now = Utc::now().format("%Y-%m-%d %H:%M:%S").to_string();
         Self {
-            form_values: format!("({}: {})", field_name, field_value),
+            form_values: (field_name, field_value),
             date: now,
-            err: err.to_string(),
+            err: err,
         }
     }
 }
@@ -39,23 +39,16 @@ impl Form {
                 )
             );
         }
-let has_letter = self.password.chars().any(|c| c.is_ascii_alphabetic());
-let has_digit = self.password.chars().any(|c| c.is_ascii_digit());
+        let has_letter = self.password.chars().any(|c| c.is_ascii_alphabetic());
+        let has_digit = self.password.chars().any(|c| c.is_ascii_digit());
+        let has_symbol = self.password.chars().any(|c|  c.is_ascii_punctuation());
 
-        let has_symbol = self.password.chars().any(|c| {
-            let c = c as u8;
-            (33..=47).contains(&c) ||
-                (58..=64).contains(&c) ||
-                (91..=96).contains(&c) ||
-                (123..=126).contains(&c)
-        });
-
-        if !has_letter || !has_symbol  || !has_digit{
+        if !has_letter || !has_symbol || !has_digit {
             return Err(
                 FormError::new(
                     "password",
                     self.password.clone(),
-                    "Password must contain ASCII alphanumeric characters and symbols (e.g., <, &, /)"
+                    "Password should be a combination of ASCII numbers, letters and symbols"
                 )
             );
         }
