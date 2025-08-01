@@ -11,26 +11,24 @@ pub struct Food {
 
 pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
     let mut data = object! {};
+    let mut cals = 0.0;
+    let mut carbs = 0.0;
+    let mut pro = 0.0;
+    let mut fats = 0.0;
 
     for i in foods {
         let cal = cnv_cal(i.calories.1.clone());
 
-        let value = cal * i.nbr_of_portions;
-        let value_carbs = i.carbs * i.nbr_of_portions;
-        let value_pro = i.proteins * i.nbr_of_portions;
-        let value_fat = i.fats * i.nbr_of_portions;
-
-        let round_value = (value * 100.0).round() / 100.0;
-        let round_carbs = (value_carbs * 100.0).round() / 100.0;
-        let round_pro = (value_pro * 100.0).round() / 100.0;
-        let round_fat = (value_fat * 100.0).round() / 100.0;
-
-        data["cals"] = round_value.into();
-        data["carbs"] = round_carbs.into();
-        data["proteins"] = round_pro.into();
-        data["fats"] = round_fat.into();
+        cals += cal * i.nbr_of_portions;
+        carbs += i.carbs * i.nbr_of_portions;
+        pro += i.proteins * i.nbr_of_portions;
+        fats += i.fats * i.nbr_of_portions;
     }
 
+    data["cals"] = round_two_decimals(cals).into();
+    data["carbs"] = round_two_decimals(carbs).into();
+    data["proteins"] = round_two_decimals(pro).into();
+    data["fats"] = round_two_decimals(fats).into();
     data
 }
 
@@ -43,4 +41,7 @@ fn cnv_cal(s: String) -> f64 {
         res.push(i);
     }
     res.parse::<f64>().unwrap()
+}
+fn round_two_decimals(num: f64) -> f64 {
+    (num * 100.0).round() / 100.0
 }
