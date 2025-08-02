@@ -3,7 +3,7 @@ pub fn stars(n: u32) -> String {
 
     let mut res = String::new();
     for i in 0..pows {
-        res.push('x');
+        res.push('*');
     }
     res
 }
