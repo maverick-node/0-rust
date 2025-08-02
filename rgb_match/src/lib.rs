@@ -9,7 +9,7 @@ pub struct Color {
 impl Color {
     pub fn swap(mut self, first: u8, second: u8) -> Color {
         self.r = match self.r {
-           1=> if r == first => second,
+           r if r == first => second,
            r if r ==second => first,
            r => r
         };
