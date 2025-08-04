@@ -16,9 +16,9 @@ pub fn get_diamond(c: char)-> Vec<String>{
             count+=2;
          }
      if letter == 'A'{
-        res.push(format!("{}{}{}", spaces, letter, other_space));
+        res.push(format!("{}{}{}", spaces, letter,spaces));
      }else{
-         res.push(format!("{}{}{}{}", spaces, letter, other_space,letter));
+         res.push(format!("{}{}{}{}{}", spaces, letter, other_space,letter,spaces));
      }
     }
     
