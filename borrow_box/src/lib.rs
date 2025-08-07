@@ -27,7 +27,14 @@ impl GameSession {
     }
 
     pub fn update_score(&mut self, user_name: &str) {
-        if self.p1.1 + self.p2.1 <self.nb_games {
+        let total1 = self.nb_games - self.p1.1;
+        let total2 = self.nb_games - self.p2.1;
+         let wins = self.nb_games / 2 + 1;
+        
+        if self.p1.1 >= wins || self.p2.1 >= wins {
+            return;
+        }
+        if self.p1.1 + self.p2.1 < self.nb_games {
             if self.p1.0 == user_name {
                 self.p1.1 += 1;
             }
