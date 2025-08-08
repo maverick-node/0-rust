@@ -10,7 +10,7 @@ fn main() {
 
     println!("{:#?}", list);
 
-    // println!("{:?}", list.last_worker());
+    println!("{:?}", list.last_worker());
 
     list.remove_worker();
     list.remove_worker();
@@ -18,7 +18,7 @@ fn main() {
 
     println!("{:?}", list);
 
-    // list.remove_worker();
+    list.remove_worker();
 
-    // println!("{:?}", list);
+    println!("{:?}", list);
 }

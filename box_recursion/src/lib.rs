@@ -57,6 +57,10 @@ impl WorkEnvironment {
         }
     }
     pub fn last_worker(&self) -> Option<(String, Role)> {
-let Some(worker) = 
+        if let Some(w) = &self.grade {
+            Some((w.name.clone(), Role::from(w.role.as_str())))
+        } else {
+            None
+        }
     }
 }
