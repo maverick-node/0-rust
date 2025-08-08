@@ -15,7 +15,7 @@ impl Node {
     }
 
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        self.ref_list.retain(|x| x != &element)
+        self.ref_list.retain(|x| !Rc::ptr_eq(x, &element))
     }
 }
 
