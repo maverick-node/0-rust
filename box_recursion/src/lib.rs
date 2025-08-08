@@ -1,10 +1,9 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq,Clone)]
 pub enum Role {
     CEO,
     Manager,
     Worker,
 }
-
 impl From<&str> for Role {
     fn from(s: &str) -> Self {
         let s_lower = s.to_lowercase();
@@ -27,7 +26,7 @@ pub type Link = Option<Box<Worker>>;
 
 #[derive(Debug)]
 pub struct Worker {
-    pub role: String,
+    pub role: Role,
     pub name: String,
     pub next: Link,
 }
@@ -41,7 +40,7 @@ impl WorkEnvironment {
 
     pub fn add_worker(&mut self, name: &str, role: &str) {
         let rr = Worker {
-            role: role.to_string(),
+            role: role.into(),
             name: name.to_string(),
             next: self.grade.take(),
         };
@@ -58,7 +57,7 @@ impl WorkEnvironment {
     }
     pub fn last_worker(&self) -> Option<(String, Role)> {
         if let Some(w) = &self.grade {
-            Some((w.name.clone(), Role::from(w.role.as_str())))
+            Some((w.name.clone(), w.role.clone()))
         } else {
             None
         }
