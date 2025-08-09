@@ -34,21 +34,22 @@ impl ThreadPool {
 
     pub fn drop_thread(&self, id: usize) {
         let mut binding = self.states.borrow_mut();
-        let Some(res) = binding.get_mut(id) else {
-            panic!("Invalid thread id");
-        };
-        if *res {
-            *res = false;
-            self.drops.set(self.drops.get() + 1);
+        let res = binding.get_mut(id).unwrap_or_else(|| {
+            panic!("Thread id {} is out of bounds", id);
+        });
+        if !*res {
+            panic!("{} is already dropped", id);
         }
+        *res = false;
+        self.drops.set(self.drops.get() + 1);
     }
 }
 
 #[derive(Debug)]
 pub struct Thread<'a> {
-    pid: i64,
-    cmd: String,
-    parent: &'a ThreadPool,
+    pub pid: i64,
+    pub cmd: String,
+    pub parent: &'a ThreadPool,
 }
 
 impl<'a> Thread<'a> {
@@ -61,7 +62,9 @@ impl<'a> Thread<'a> {
         }
     }
 
-    pub fn skill(self) {}
+    pub fn skill(self) {
+        drop(self);
+    }
 }
 
 impl Drop for Thread<'_> {
