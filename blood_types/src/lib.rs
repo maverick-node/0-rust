@@ -48,6 +48,13 @@ impl FromStr for RhFactor {
     }
 }
 
+impl Ord for BloodType {
+    fn cmp(&self, other: &Self) -> Ordering {
+        (self.antigen.clone(), self.rh_factor.clone()).cmp(
+            &(other.antigen.clone(), other.rh_factor.clone())
+        )
+    }
+}
 impl FromStr for BloodType {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
