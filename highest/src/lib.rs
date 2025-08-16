@@ -21,8 +21,13 @@ impl<'a> Numbers<'a> {
     }
     pub fn highest_three(&self) -> Vec<u32> {
         let mut sorted = self.numbers.to_vec();
-        sorted.sort(); 
+        sorted.sort();
         sorted.reverse();
-        sorted[0..3].to_vec()
+        let len = sorted.len();
+        if len >= 3 {
+            sorted[0..3].to_vec()
+        } else {
+            sorted[0..len].to_vec()
+        }
     }
 }
